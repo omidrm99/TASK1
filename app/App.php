@@ -41,7 +41,7 @@ function extractTBook(array $bookRow): array
 {
     [$ISBN, $bookTitle, $authorName, $pagesCount, $publishDate] = $bookRow;
 
-    //  $pagesCount = (float)str_replace(['$', ','], '', $pagesCount);
+
 
     return [
         'ISBN' => $ISBN,
