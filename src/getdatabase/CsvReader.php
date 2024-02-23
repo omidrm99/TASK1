@@ -21,7 +21,7 @@ class CsvReader
             fgetcsv($csvFile);
             $data = [];
             while (($row = fgetcsv($csvFile)) !== false) {
-                $data[] = $row;
+                $data[] = $this->extractBook($row);
             }
             fclose($csvFile);
             $this->data = $data;
@@ -29,6 +29,20 @@ class CsvReader
             echo "Error: Unable to open csvFile.";
         }
     }
+
+    private function extractBook(array $bookRow): array
+    {
+        [$ISBN, $bookTitle, $authorName, $pagesCount, $publishDate] = $bookRow;
+
+        return [
+            'ISBN' => $ISBN,
+            'bookTitle' => $bookTitle,
+            'authorName' => $authorName,
+            'pagesCount' => $pagesCount,
+            'publishDate' => $publishDate,
+        ];
+    }
+
 
     public function getData(): array
     {
