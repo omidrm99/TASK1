@@ -1,6 +1,6 @@
 <?php
 
-namespace App\getdatabase;
+namespace App\booksReader;
 
 class JsonReader
 {

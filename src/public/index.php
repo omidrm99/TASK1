@@ -3,8 +3,8 @@ declare(strict_types=1);
 require __DIR__ . '/../../vendor/autoload.php';
 
 
-use App\getdatabase\CsvReader;
-use App\getdatabase\JsonReader;
+use App\booksReader\CsvReader;
+use App\booksReader\JsonReader;
 
 
 
@@ -24,7 +24,7 @@ $jsonReader = new JsonReader(json_File_Path);
 $yes = $jsonReader->getData();
 $yes1 = $csvReader->getData();
 echo '<pre>';
-print_r($yes1);
+print_r($yes);
 echo '</pre>';
 
 
