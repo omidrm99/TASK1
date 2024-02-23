@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace App\app;
+
 function getBooksFiles(string $path): array
 {
     $books = [];

@@ -1,5 +1,7 @@
 <?php
 
+namespace app;
+
 class BookTableGenerator
 {
     public function generate(array $books): string
