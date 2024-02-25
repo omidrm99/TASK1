@@ -5,28 +5,22 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 use App\booksReader\CsvReader;
 use App\booksReader\JsonReader;
+use App\booksReader\Merger;
 
 
 
 
-
-// csv fil reader section
 const csv_File_Path = __DIR__ . '/../database/books.csv';
-$csvReader = new CsvReader(csv_File_Path);
-
-
-// json fil reader section
 const json_File_Path = __DIR__ . '/../database/books.json';
-$jsonReader = new JsonReader(json_File_Path);
 
 
 
-$yes = $jsonReader->getData();
-$yes1 = $csvReader->getData();
+$merger = new Merger();
+$mergedData = $merger->getMergedData();
+
+
+
 echo '<pre>';
-print_r($yes);
+print_r($mergedData);
 echo '</pre>';
 
-
-
-exit();
