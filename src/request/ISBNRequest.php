@@ -12,16 +12,16 @@ class ISBNRequest
 
 
 
-    private function extractISBN()
-    {
-        $mergerClass = new Merger();
-
-        $mergedData = $mergerClass->getMergedData();
-
-        foreach ($mergedData as $data) {
-            $this->ISBN = $data;
-        }
-    }
+//    private function extractISBN()
+//    {
+//        $mergerClass = new Merger();
+//
+//        $mergedData = $mergerClass->getMergedData();
+//
+//        foreach ($mergedData as $data) {
+//            $this->ISBN = $data;
+//        }
+//    }
 
 //    function findBookByISBN(...$targetISBN)
 //    {
@@ -33,7 +33,7 @@ class ISBNRequest
 
     function findBookByISBN(array $books, ...$targetISBNs)
     {
-        $foundBooks = array();
+        $foundBooks = [];
 
         foreach ($targetISBNs as $isbn) {
             foreach ($books as $book) {
