@@ -3,9 +3,9 @@ declare(strict_types=1);
 require __DIR__ . '/../../vendor/autoload.php';
 
 
-use App\booksReader\CsvReader;
-use App\booksReader\JsonReader;
+
 use App\booksReader\Merger;
+use App\request\ISBNRequest;
 
 
 
@@ -20,7 +20,11 @@ $mergedData = $merger->getMergedData();
 
 
 
+$find = new ISBNRequest();
+$foundBooks = $find->findBookByISBN($mergedData, '978-1451635626', '978-0062316097');
 echo '<pre>';
-print_r($mergedData);
+print_r($foundBooks);
 echo '</pre>';
+
+
 
