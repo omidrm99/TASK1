@@ -6,10 +6,10 @@ namespace App\request;
 
 use App\dataBaseReader\Merger;
 
+
 class ISBNRequest
 {
     private array $ISBN = [];
-
 
 
 //    private function extractISBN()
