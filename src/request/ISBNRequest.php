@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\request;
 
-use App\booksReader\Merger;
+use App\dataBaseReader\Merger;
 
 class ISBNRequest
 {

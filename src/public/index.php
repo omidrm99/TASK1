@@ -4,7 +4,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 
 
-use App\booksReader\Merger;
+use App\dataBaseReader\Merger;
 use App\request\ISBNRequest;
 
 
