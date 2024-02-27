@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\request;
-
-use App\dataBaseReader\Merger;
+namespace App\request\finder;
 
 
 class ISBNRequest

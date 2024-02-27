@@ -3,13 +3,11 @@ declare(strict_types=1);
 require __DIR__ . '/../../vendor/autoload.php';
 
 
-
 use App\dataBaseReader\Merger;
-use App\request\ISBNRequest;
-use App\request\AuthorNameRequest;
-use App\request\BookTitleRequest;
-use App\request\PublishDateRequest;
-
+use App\request\finder\AuthorNameRequest;
+use App\request\finder\BookTitleRequest;
+use App\request\finder\ISBNRequest;
+use App\request\finder\PublishDateRequest;
 
 
 const csv_File_Path = __DIR__ . '/../database/books.csv';
