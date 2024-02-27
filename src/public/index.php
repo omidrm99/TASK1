@@ -6,9 +6,9 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 use App\dataBaseReader\Merger;
 use App\request\ISBNRequest;
-use App\request\authorNameRequest;
-use App\request\bookTitleRequest;
-use App\request\publishDateRequest;
+use App\request\AuthorNameRequest;
+use App\request\BookTitleRequest;
+use App\request\PublishDateRequest;
 
 
 
@@ -23,9 +23,9 @@ $mergedData = $merger->getMergedData();
 
 
 $find = new ISBNRequest();
-$find1 = new authorNameRequest();
-$find2 = new bookTitleRequest();
-$find3 = new publishDateRequest();
+$find1 = new AuthorNameRequest();
+$find2 = new BookTitleRequest();
+$find3 = new PublishDateRequest();
 
 
 

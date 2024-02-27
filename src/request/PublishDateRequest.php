@@ -2,16 +2,15 @@
 
 namespace App\request;
 
-class bookTitleRequest
+class PublishDateRequest
 {
-
-    function findBookByTitle(array $books, ...$targetTitles)
+    function findBookBypublishDate(array $books, ...$targetpublishDates)
     {
         $foundBooks = [];
 
-        foreach ($targetTitles as $title) {
+        foreach ($targetpublishDates as $date) {
             foreach ($books as $book) {
-                if ($book['bookTitle'] === $title) {
+                if ($book['publishDate'] === $date) {
                     $foundBooks[] = $book;
                 }
             }

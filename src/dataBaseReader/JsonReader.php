@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace App\dataBaseReader;
 
-class JsonReader
+class JsonReader implements getData
 {
     private array $data = [];
     private string $path;

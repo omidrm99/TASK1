@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace App\dataBaseReader;
 
-class CsvReader
+class CsvReader implements getData
 {
     private array $data = [];
     private string $path;

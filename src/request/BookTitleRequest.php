@@ -2,15 +2,16 @@
 
 namespace App\request;
 
-class authorNameRequest
+class BookTitleRequest
 {
-    function findBookByauthorName(array $books, ...$targetAuthorNames)
+
+    function findBookByTitle(array $books, ...$targetTitles)
     {
         $foundBooks = [];
 
-        foreach ($targetAuthorNames as $authorName) {
+        foreach ($targetTitles as $title) {
             foreach ($books as $book) {
-                if ($book['authorName'] === $authorName) {
+                if ($book['bookTitle'] === $title) {
                     $foundBooks[] = $book;
                 }
             }
