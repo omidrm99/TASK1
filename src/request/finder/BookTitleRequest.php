@@ -1,21 +1,16 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\request\finder;
 
-use App\dataBaseReader\Merger;
-
-
-class ISBNRequest
+class BookTitleRequest
 {
-    function findBookByISBN(array $books, ...$targetISBNs)
+    function findBookBookTitle(array $books, ...$targetBookTitles)
     {
         $foundBooks = [];
 
-        foreach ($targetISBNs as $isbn) {
+        foreach ($targetBookTitles as $bookTitle) {
             foreach ($books as $book) {
-                if ($book['ISBN'] === $isbn) {
+                if ($book['bookTitle'] === $bookTitle) {
                     $foundBooks[] = $book;
                 }
             }
@@ -23,5 +18,4 @@ class ISBNRequest
 
         return $foundBooks;
     }
-
 }
