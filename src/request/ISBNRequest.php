@@ -11,26 +11,6 @@ class ISBNRequest
 {
     private array $ISBN = [];
 
-
-//    private function extractISBN()
-//    {
-//        $mergerClass = new Merger();
-//
-//        $mergedData = $mergerClass->getMergedData();
-//
-//        foreach ($mergedData as $data) {
-//            $this->ISBN = $data;
-//        }
-//    }
-
-//    function findBookByISBN(...$targetISBN)
-//    {
-//        foreach ($targetISBN as $isbn){
-//
-//        }
-//
-//    }
-
     function findBookByISBN(array $books, ...$targetISBNs)
     {
         $foundBooks = [];
