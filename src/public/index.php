@@ -30,6 +30,3 @@ $ali = $omid->sortByPublishDate();
 echo '<pre>';
 print_r($ali);
 echo '</pre>';
-
-
-hhh
