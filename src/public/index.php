@@ -9,7 +9,6 @@ use App\request\ISBNRequest;
 use App\request\AuthorNameRequest;
 use App\request\BookTitleRequest;
 use App\request\PublishDateRequest;
-use App\request\PublishDateSorter;
 
 
 
@@ -22,11 +21,19 @@ $merger = new Merger();
 $mergedData = $merger->getMergedData();
 
 
-$omid = new ISBNRequest($mergedData,'978-0679413353');
-$ali = $omid->sortByPublishDate();
+
+$find = new ISBNRequest();
+$find1 = new AuthorNameRequest();
+$find2 = new BookTitleRequest();
+$find3 = new PublishDateRequest();
 
 
 
+
+$foundBooks = $find3->findBookBypublishDate($mergedData, '1978-11-02','2010-12-05');
 echo '<pre>';
-print_r($ali);
+print_r($foundBooks);
 echo '</pre>';
+
+
+
