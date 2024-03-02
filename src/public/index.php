@@ -22,8 +22,8 @@ $merger = new Merger();
 $mergedData = $merger->getMergedData();
 
 
-$omid = new PublishDateSorter();
-$ali = $omid->sortDataByPublishDate();
+$omid = new ISBNRequest($mergedData,'978-0679413353');
+$ali = $omid->sortByPublishDate();
 
 
 

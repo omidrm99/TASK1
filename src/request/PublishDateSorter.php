@@ -8,16 +8,15 @@ class PublishDateSorter
 {
     private array $sorted = [];
 
-    public function sortDataByPublishDate(): array
+    public function __construct(array $mergedData)
     {
-        $merger = new Merger();
-        $mergedData = $merger->getMergedData();
+
 
         usort($mergedData, function ($a, $b) {
             return strtotime($a['publishDate']) - strtotime($b['publishDate']);
         });
 
-        return $mergedData;
+        $this->sorted= $mergedData;
     }
 
     public function getSortedData(): array
