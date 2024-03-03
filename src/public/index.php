@@ -26,9 +26,8 @@ $find2 = new BookTitleRequest();
 $find3 = new PublishDateRequest();
 
 
-
-
-$foundBooks = $find3->findBookBypublishDate($mergedData, '1978-11-02','2010-12-05');
+$find->findBookByISBN($mergedData, '978-0735619678','978-0062316097');
+$foundBooks = $find->getSortedBooks();
 echo '<pre>';
 print_r($foundBooks);
 echo '</pre>';

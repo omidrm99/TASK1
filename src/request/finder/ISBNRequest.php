@@ -4,24 +4,37 @@ declare(strict_types=1);
 
 namespace App\request\finder;
 
-use App\dataBaseReader\Merger;
+
+use App\dataBaseReader;
 
 
 class ISBNRequest
 {
-    function findBookByISBN(array $books, ...$targetISBNs)
-    {
-        $foundBooks = [];
 
+    private array $foundBooks = [];
+    private array $sortedBooks = [];
+
+    public function findBookByISBN(array $books, ...$targetISBNs)
+    {
         foreach ($targetISBNs as $isbn) {
             foreach ($books as $book) {
                 if ($book['ISBN'] === $isbn) {
-                    $foundBooks[] = $book;
+                    $this->foundBooks[] = $book;
                 }
             }
         }
-
-        return $foundBooks;
     }
 
+
+    private function publishDateSorter()
+    {
+        $sorter = new dataBaseReader\publishDateSorter($this->foundBooks);
+        $this->sortedBooks = $sorter->getSortedData();
+    }
+
+
+    public function getSortedBooks()
+    {
+        return $this->sortedBooks;
+    }
 }
