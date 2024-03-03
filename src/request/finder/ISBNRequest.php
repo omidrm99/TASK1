@@ -14,7 +14,7 @@ class ISBNRequest
     private array $foundBooks = [];
     private array $sortedBooks = [];
 
-    public function findBookByISBN(array $books, ...$targetISBNs)
+    public function findBookByISBN(array $books, ...$targetISBNs): void
     {
         foreach ($targetISBNs as $isbn) {
             foreach ($books as $book) {
@@ -26,15 +26,19 @@ class ISBNRequest
     }
 
 
-    private function publishDateSorter()
+    private function publishDateSorter(): void
     {
         $sorter = new dataBaseReader\publishDateSorter($this->foundBooks);
         $this->sortedBooks = $sorter->getSortedData();
     }
 
 
-    public function getSortedBooks()
+    public function getSortedBooks(): array
     {
+        // Sort books if not already sorted
+        if (empty($this->sortedBooks)) {
+            $this->publishDateSorter();
+        }
         return $this->sortedBooks;
     }
 }
