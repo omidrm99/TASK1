@@ -22,7 +22,6 @@ class Merger
 
         $this->merged = array_merge($json, $csv);
 
-        return $this->merged;
     }
 
 

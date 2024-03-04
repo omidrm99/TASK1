@@ -2,10 +2,12 @@
 
 namespace App\request;
 
+use Exception;
+
 class CommandReader
 {
-    private $command_name;
-    private $parameters;
+    private string $command_name;
+    private array $parameters;
 
     public function __construct($json_file) {
         $json_data = file_get_contents($json_file);
@@ -18,6 +20,9 @@ class CommandReader
         $this->command_name = $data['command_name'];
         $this->parameters = $data['parameters'];
     }
+
+
+
 
     public function getCommandName() {
         return $this->command_name;

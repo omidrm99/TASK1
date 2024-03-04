@@ -8,18 +8,28 @@ use App\request\finder\AuthorNameRequest;
 use App\request\finder\BookTitleRequest;
 use App\request\finder\ISBNRequest;
 use App\request\finder\PublishDateRequest;
+use App\request\CommandReader;
 
 
 const csv_File_Path = __DIR__ . '/../database/books.csv';
 const json_File_Path = __DIR__ . '/../database/books.json';
-
+const command_File_Path =  'Command.json';
 
 
 $merger = new Merger();
 $mergedData = $merger->getMergedData();
 
+try {
+$commandReader = new CommandReader(command_File_Path);
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
 
+//echo '<pre>';
+//print_r($test);
+//echo '</pre>';
 
+exit();
 $find = new ISBNRequest();
 $find1 = new AuthorNameRequest();
 $find2 = new BookTitleRequest();
