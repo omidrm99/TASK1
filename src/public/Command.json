@@ -1,10 +1,6 @@
 {
-  "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true
+  "command_name": "index",
+  "parameters": {
+    "isbns": ["978-0061120084","978-1451635626","978-1451635126"]
   }
 }
