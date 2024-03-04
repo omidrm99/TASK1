@@ -1,5 +1,5 @@
 {
-  "command_name": "find",
+  "command_name": "FIND",
   "parameters": {
     "isbns": ["978-0061120084","978-1451635626","978-1451635126"]
   }

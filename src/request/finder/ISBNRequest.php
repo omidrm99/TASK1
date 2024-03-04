@@ -35,7 +35,7 @@ class ISBNRequest
 
     public function getSortedBooks(): array
     {
-        // Sort books if not already sorted
+
         if (empty($this->sortedBooks)) {
             $this->publishDateSorter();
         }

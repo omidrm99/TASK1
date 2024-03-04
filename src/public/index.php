@@ -25,9 +25,9 @@ $commandReader = new CommandReader(command_File_Path);
     echo "Error: " . $e->getMessage();
 }
 
-//echo '<pre>';
-//print_r($test);
-//echo '</pre>';
+echo '<pre>';
+print_r($commandReader->getResults());
+echo '</pre>';
 
 exit();
 $find = new ISBNRequest();
