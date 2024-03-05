@@ -37,7 +37,7 @@ class CommandReader
         $this->parameters = $this->data['parameters']['isbns'];
     }
 
-    private function commandDetector()
+    private function commandDetector(): void
     {
         $ISBNFinder = new ISBNRequest();
 
@@ -50,7 +50,7 @@ class CommandReader
         }
     }
 
-    public function getResults()
+    public function getResults(): array
     {
         if (empty($this->results)) {
             $this->commandDetector();
