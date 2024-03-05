@@ -33,8 +33,6 @@ class CommandReader
         } else {
             throw new Exception("Error decoding JSON");
         }
-
-
         $this->command_name = $this->data['command_name'];
         $this->parameters = $this->data['parameters']['isbns'];
     }
@@ -45,10 +43,10 @@ class CommandReader
 
 
         if ($this->command_name === 'FIND') {
-            $ISBNFinder->findBookByISBN($this->parameters);
+            foreach ($this->parameters as $parameter){
+                $ISBNFinder->findBookByISBN($parameter);
+            }
             $this->results = $ISBNFinder->getSortedBooks();
-            var_dump($this->results);
-            exit();
         }
     }
 
