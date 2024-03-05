@@ -36,14 +36,14 @@ class CommandReader
         $ISBNFinder = new ISBNRequest();
 
         if ($this->command_name === 'FIND') {
-            $ISBNFinder->findBookByISBN($merger->getMergedData(),$this->parameterValues);
+            $ISBNFinder->findBookByISBN($this->parameterValues);
             $this->results = $ISBNFinder->getSortedBooks();
         }
     }
 
     public function getResults()
     {
-        if (!empty($this->results)){
+        if (empty($this->results)){
             $this->commandDetector();
         }
         return $this->results;

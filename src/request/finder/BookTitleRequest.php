@@ -1,21 +1,28 @@
 <?php
 
 namespace App\request\finder;
+
 use App\dataBaseReader;
+use App\dataBaseReader\Merger;
+
 class BookTitleRequest
 {
     private array $foundBooks = [];
     private array $sortedBooks = [];
-    function findBookBookTitle(array $books, ...$targetBookTitles): void
+
+    function findBookBookTitle(...$targetBookTitles): void
     {
+        $merger = new Merger();
+        $mergedData = $merger->getMergedData();
         foreach ($targetBookTitles as $bookTitle) {
-            foreach ($books as $book) {
+            foreach ($mergedData as $book) {
                 if ($book['bookTitle'] === $bookTitle) {
                     $this->foundBooks[] = $book;
                 }
             }
         }
     }
+
     private function publishDateSorter(): void
     {
         $sorter = new dataBaseReader\publishDateSorter($this->foundBooks);

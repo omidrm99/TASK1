@@ -3,22 +3,26 @@
 namespace App\request\finder;
 
 use App\dataBaseReader;
+use App\dataBaseReader\Merger;
+
 class PublishDateRequest
 {
     private array $foundBooks = [];
     private array $sortedBooks = [];
-    function findBookBypublishDate(array $books, ...$targetpublishDates)
+
+    function findBookBypublishDate(...$targetpublishDates)
     {
-
-
+        $merger = new Merger();
+        $mergedData = $merger->getMergedData();
         foreach ($targetpublishDates as $date) {
-            foreach ($books as $book) {
+            foreach ($mergedData as $book) {
                 if ($book['publishDate'] === $date) {
                     $this->foundBooks[] = $book;
                 }
             }
         }
     }
+
     private function publishDateSorter(): void
     {
         $sorter = new dataBaseReader\publishDateSorter($this->foundBooks);

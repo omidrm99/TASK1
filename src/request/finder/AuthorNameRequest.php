@@ -2,16 +2,20 @@
 
 namespace App\request\finder;
 use App\dataBaseReader;
+use App\dataBaseReader\Merger;
+
 class AuthorNameRequest
 {
     private array $foundBooks = [];
     private array $sortedBooks = [];
 
-    function findBookByAuthorName(array $books, ...$targetAuthorNames): void
+    function findBookByAuthorName(...$targetAuthorNames): void
     {
+        $merger = new Merger();
+        $mergedData = $merger->getMergedData();
 
         foreach ($targetAuthorNames as $authorName) {
-            foreach ($books as $book) {
+            foreach ($mergedData as $book) {
                 if ($book['authorName'] === $authorName) {
                     $this->foundBooks[] = $book;
                 }
