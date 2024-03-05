@@ -5,8 +5,9 @@ namespace App\request\finder;
 use App\dataBaseReader;
 use App\dataBaseReader\Merger;
 
-class BookRequestFinder
+class AIOFinder
 {
+
     private array $foundBooks = [];
     private array $sortedBooks = [];
 
