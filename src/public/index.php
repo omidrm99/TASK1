@@ -13,7 +13,8 @@ use App\request\CommandReader;
 
 const csv_File_Path = __DIR__ . '/../database/books.csv';
 const json_File_Path = __DIR__ . '/../database/books.json';
-const command_File_Path =  'Command.json';
+const command_File_Path = __DIR__ . '\Command.json';
+
 
 
 $merger = new Merger();
@@ -36,7 +37,7 @@ $find2 = new BookTitleRequest();
 $find3 = new PublishDateRequest();
 
 
-$find->findBookByISBN($mergedData, '978-0735619678','978-0062316097');
+$find->findBookByISBN('978-0735619678','978-0062316097');
 $foundBooks = $find->getSortedBooks();
 echo '<pre>';
 print_r($foundBooks);

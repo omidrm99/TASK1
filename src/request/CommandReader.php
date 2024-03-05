@@ -4,63 +4,59 @@ namespace App\request;
 
 use Exception;
 use App\request\finder\ISBNRequest;
-use App\dataBaseReader\Merger;
 
 class CommandReader
 {
 
     private string $command_name;
     private array $parameters;
-    private array $parameterValues;
     private array $results;
+    private string $path;
+    private mixed $data;
 
-    public function __construct($json_file)
+    public function __construct(string $path)
     {
-        $json_data = file_get_contents($json_file);
-        $data = json_decode($json_data, true);
+        $this->path = $path;
+        $this->readCommandFile();
+    }
 
-        if ($data === null) {
+    private function readCommandFile()
+    {
+        $commandData = file_get_contents($this->path);
+        if ($commandData !== false) {
+            $data = json_decode($commandData, true);
+            if ($data !== null && isset($data['parameters'])) {
+                $this->data = $data;
+            } else {
+                throw new Exception("Error decoding JSON");
+            }
+        } else {
             throw new Exception("Error decoding JSON");
         }
 
-        $this->command_name = $data['command_name'];
-        $this->parameters = $data['parameters'];
-        $this->parameterValues = $this->parameters['isbns'];
-    }
 
+        $this->command_name = $this->data['command_name'];
+        $this->parameters = $this->data['parameters']['isbns'];
+    }
 
     private function commandDetector()
     {
-        $merger = new Merger();
-
         $ISBNFinder = new ISBNRequest();
 
+
         if ($this->command_name === 'FIND') {
-            $ISBNFinder->findBookByISBN($this->parameterValues);
+            $ISBNFinder->findBookByISBN($this->parameters);
             $this->results = $ISBNFinder->getSortedBooks();
+            var_dump($this->results);
+            exit();
         }
     }
 
     public function getResults()
     {
-        if (empty($this->results)){
+        if (empty($this->results)) {
             $this->commandDetector();
         }
         return $this->results;
-    }
-
-    public function getCommandName()
-    {
-        return $this->command_name;
-    }
-
-    public function getParameters()
-    {
-        return $this->parameters;
-    }
-
-    public function getISBNs()
-    {
-        return $this->parameters['isbns'];
     }
 }
