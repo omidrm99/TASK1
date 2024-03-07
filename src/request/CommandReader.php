@@ -15,6 +15,7 @@ class CommandReader
     private array $parameterValues;
     private string $path;
     private mixed $data;
+    private $parameterKey;
 
     public function __construct(string $path)
     {
@@ -42,16 +43,29 @@ class CommandReader
 
     private function parameterExtractor(): void
     {
+     //   return array_keys($this->parameters);
+
+        if (!empty($this->parameters) && isset($this->parameters[$key])) {
+           // return $inputArray[$key];
+        } else {
+            // Return an empty array if the specified key is not found or input array is empty
+            //return [];
+        }
+
         $all_values = $this->parameters;
         foreach ($all_values as $values) {
             $this->parameterValues = $values;
         }
     }
+
     public function getParameterValues(): array
-    {   if (empty($this->parameterValues)){
-        $this->parameterExtractor();
-        return $this->parameterValues;
-    }
+    {
+        if (empty($this->parameterValues)) {
+            // $this->parameterExtractor();
+            $this->parameterKey;
+            var_dump($this->parameterKey);
+            exit();
+        }
         return $this->parameterValues;
     }
 

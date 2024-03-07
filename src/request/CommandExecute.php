@@ -6,13 +6,18 @@ use App\request\finder\ISBNRequest;
 
 class CommandExecute
 {
-
     private array $results;
     private $parameters;
 
     public function findCommand()
     {
-        $commandReader = new CommandReader();
+        $commandReader = new CommandReader(command_File_Path);
+        $commandReader->getParameterValues();
+        print_r( $commandReader);
+        exit();
+
+
+
 
         $ISBNFinder = new ISBNRequest();
         foreach ($this->parameters as $parameter){
