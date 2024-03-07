@@ -2,15 +2,17 @@
 
 namespace App\request;
 
+
 use Exception;
-use App\request\finder\ISBNRequest;
+use App\request\CommandExecute;
+
 
 class CommandReader
 {
 
     private string $command_name;
     private array $parameters;
-    private array $results;
+    private array $parameterValues;
     private string $path;
     private mixed $data;
 
@@ -34,27 +36,32 @@ class CommandReader
             throw new Exception("Error decoding JSON");
         }
         $this->command_name = $this->data['command_name'];
-        $this->parameters = $this->data['parameters']['isbns'];
+        $this->parameters = $this->data['parameters'];
     }
 
-    private function commandDetector(): void
-    {
-        $ISBNFinder = new ISBNRequest();
 
+    private function parameterExtractor(): void
+    {
+        $all_values = $this->parameters;
+        foreach ($all_values as $values) {
+            $this->parameterValues = $values;
+        }
+    }
+    public function getParameterValues(): array
+    {   if (empty($this->parameterValues)){
+        $this->parameterExtractor();
+        return $this->parameterValues;
+    }
+        return $this->parameterValues;
+    }
+
+    public function commandDetector(): void
+    {
+        $commandExecute = new CommandExecute();
 
         if ($this->command_name === 'FIND') {
-            foreach ($this->parameters as $parameter){
-                $ISBNFinder->findBookByISBN($parameter);
-            }
-            $this->results = $ISBNFinder->getSortedBooks();
+            $commandExecute->findCommand();
+            $this->parameterExtractor();
         }
-    }
-
-    public function getResults(): array
-    {
-        if (empty($this->results)) {
-            $this->commandDetector();
-        }
-        return $this->results;
     }
 }
