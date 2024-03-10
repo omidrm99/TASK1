@@ -4,12 +4,25 @@ namespace App\request\finder;
 
 use App\dataBaseReader;
 use App\dataBaseReader\Merger;
+use App\request\CommandReader;
 
 class AIOFinder
 {
 
     private array $foundBooks = [];
     private array $sortedBooks = [];
+
+
+    public function command()
+    {
+
+        if
+    }
+
+
+
+
+
 
     public function findBookByPublishDate(...$targetPublishDates): void
     {

@@ -12,10 +12,8 @@ class CommandReader
 
     private string $command_name;
     private array $parameters;
-    private array $parameterValues;
     private string $path;
     private mixed $data;
-    private $parameterKey;
     private $resaults;
 
     public function __construct(string $path)
@@ -38,7 +36,7 @@ class CommandReader
             throw new Exception("Error decoding JSON");
         }
         $this->command_name = $this->data['command_name'];
-        $this->parameters = $this->data['parameters']['isbns'];
+        $this->parameters = $this->data['parameters'];
     }
 
 
@@ -82,5 +80,10 @@ class CommandReader
     public function getResults()
     {
         return $this->resaults;
+    }
+
+    public function getCommandName(): string
+    {
+        return $this->command_name;
     }
 }

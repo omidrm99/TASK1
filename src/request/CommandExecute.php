@@ -11,12 +11,6 @@ class CommandExecute
 
     public function findCommand()
     {
-        $commandReader = new CommandReader(command_File_Path);
-        $commandReader->getParameterValues();
-
-
-
-
         $ISBNFinder = new ISBNRequest();
         foreach ($this->parameters as $parameter){
             $ISBNFinder->findBookByISBN($parameter);
