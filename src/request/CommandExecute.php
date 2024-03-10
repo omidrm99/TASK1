@@ -13,8 +13,6 @@ class CommandExecute
     {
         $commandReader = new CommandReader(command_File_Path);
         $commandReader->getParameterValues();
-        print_r( $commandReader);
-        exit();
 
 
 

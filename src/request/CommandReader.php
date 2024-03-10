@@ -16,6 +16,7 @@ class CommandReader
     private string $path;
     private mixed $data;
     private $parameterKey;
+    private $resaults;
 
     public function __construct(string $path)
     {
@@ -37,37 +38,37 @@ class CommandReader
             throw new Exception("Error decoding JSON");
         }
         $this->command_name = $this->data['command_name'];
-        $this->parameters = $this->data['parameters'];
+        $this->parameters = $this->data['parameters']['isbns'];
     }
 
 
-    private function parameterExtractor(): void
-    {
-     //   return array_keys($this->parameters);
+//    private function parameterExtractor(): void
+//    {
+//     //   return array_keys($this->parameters);
+//
+//        if (!empty($this->parameters) && isset($this->parameters[$key])) {
+//           // return $inputArray[$key];
+//        } else {
+//            // Return an empty array if the specified key is not found or input array is empty
+//            //return [];
+//        }
+//
+//        $all_values = $this->parameters;
+//        foreach ($all_values as $values) {
+//            $this->parameterValues = $values;
+//        }
+//    }
 
-        if (!empty($this->parameters) && isset($this->parameters[$key])) {
-           // return $inputArray[$key];
-        } else {
-            // Return an empty array if the specified key is not found or input array is empty
-            //return [];
-        }
-
-        $all_values = $this->parameters;
-        foreach ($all_values as $values) {
-            $this->parameterValues = $values;
-        }
-    }
-
-    public function getParameterValues(): array
-    {
-        if (empty($this->parameterValues)) {
-            // $this->parameterExtractor();
-            $this->parameterKey;
-            var_dump($this->parameterKey);
-            exit();
-        }
-        return $this->parameterValues;
-    }
+//    public function getParameterValues(): array
+//    {
+//        if (empty($this->parameterValues)) {
+//            // $this->parameterExtractor();
+//            $this->parameterKey;
+//            var_dump($this->parameterKey);
+//            exit();
+//        }
+//        return $this->parameterValues;
+//    }
 
     public function commandDetector(): void
     {
@@ -75,7 +76,11 @@ class CommandReader
 
         if ($this->command_name === 'FIND') {
             $commandExecute->findCommand();
-            $this->parameterExtractor();
         }
+    }
+
+    public function getResults()
+    {
+        return $this->resaults;
     }
 }
