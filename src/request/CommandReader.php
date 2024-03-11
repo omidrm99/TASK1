@@ -3,8 +3,8 @@
 namespace App\request;
 
 
-use Exception;
 use App\request\CommandExecute;
+use Exception;
 
 
 class CommandReader
@@ -16,7 +16,7 @@ class CommandReader
     private mixed $data;
     private $resaults;
 
-    public function __construct(string $path)
+   public function __construct(string $path)
     {
         $this->path = $path;
         $this->readCommandFile();
@@ -39,51 +39,24 @@ class CommandReader
         $this->parameters = $this->data['parameters'];
     }
 
-
-//    private function parameterExtractor(): void
-//    {
-//     //   return array_keys($this->parameters);
-//
-//        if (!empty($this->parameters) && isset($this->parameters[$key])) {
-//           // return $inputArray[$key];
-//        } else {
-//            // Return an empty array if the specified key is not found or input array is empty
-//            //return [];
-//        }
-//
-//        $all_values = $this->parameters;
-//        foreach ($all_values as $values) {
-//            $this->parameterValues = $values;
-//        }
-//    }
-
-//    public function getParameterValues(): array
-//    {
-//        if (empty($this->parameterValues)) {
-//            // $this->parameterExtractor();
-//            $this->parameterKey;
-//            var_dump($this->parameterKey);
-//            exit();
-//        }
-//        return $this->parameterValues;
-//    }
-
-    public function commandDetector(): void
+    public function commandDetector()
     {
         $commandExecute = new CommandExecute();
 
-        if ($this->command_name === 'FIND') {
-            $commandExecute->findCommand();
-        }
+
+            switch ($this->data['command_name']) {
+                case "FIND":
+                    $commandExecute->findCommand();
+                    break;
+            }
+
     }
 
     public function getResults()
     {
+        if (empty($this->resaults)) {
+            $this->commandDetector();
+        }
         return $this->resaults;
-    }
-
-    public function getCommandName(): string
-    {
-        return $this->command_name;
     }
 }
