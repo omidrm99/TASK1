@@ -13,7 +13,7 @@ class JsonReader implements getData
         $this->readJsonFile();
     }
 
-    private function readJsonFile()
+    private function readJsonFile(): void
     {
         $jsonData = file_get_contents($this->path);
         if ($jsonData !== false) {

@@ -11,19 +11,41 @@ use App\request\finder\PublishDateRequest;
 
 class CommandExecute
 {
-    private array $results;
-    private $parameters;
+    private $data;
 
     public function findCommand()
     {
-        $ISBN = new ISBNRequest();
-        $authorName = new AuthorNameRequest();
-        $bookTitle = new BookTitleRequest();
-        $publishDate = new PublishDateRequest();
+        $commandReader = new CommandReader();
+        $ISBN = new ISBNRequest;
+        $AuthorName = new AuthorNameRequest;
+        $bookTitle = new BookTitleRequest;
+        $publishDate = new PublishDateRequest;
+        $this->data = $commandReader->getData();
 
-
-
-
+        switch ($this->data[0]) {
+            case "isbn":
+                $value = true;
+                foreach ($commandReader->getData() as $isbn) {
+                    if ($value) {
+                        $value = false;
+                        continue;
+                    }
+                    $ISBN->findBookByISBN($isbn);
+                }
+                var_dump($ISBN->getSortedBooks());
+                break;
+            case "publishDate":
+                $value = true;
+                foreach ($commandReader->getData() as $authorName) {
+                    if ($value) {
+                        $value = false;
+                        continue;
+                    }
+                    $AuthorName->findBookByAuthorName($authorName);
+                }
+                var_dump($AuthorName->getSortedBooks());
+                break;
+        }
     }
 
 }

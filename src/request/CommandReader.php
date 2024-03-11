@@ -16,14 +16,14 @@ class CommandReader
     private mixed $data;
     private $resaults;
 
-   public function __construct(string $path)
+    public function __construct()
     {
-        $this->path = $path;
         $this->readCommandFile();
     }
 
-    private function readCommandFile()
+    private function readCommandFile(): void
     {
+        $this->path = __DIR__ . '/../public/Command.json';
         $commandData = file_get_contents($this->path);
         if ($commandData !== false) {
             $data = json_decode($commandData, true);
@@ -39,17 +39,16 @@ class CommandReader
         $this->parameters = $this->data['parameters'];
     }
 
-    public function commandDetector()
+    private function commandDetector(): void
     {
         $commandExecute = new CommandExecute();
 
 
-            switch ($this->data['command_name']) {
-                case "FIND":
-                    $commandExecute->findCommand();
-                    break;
-            }
-
+        switch ($this->data['command_name']) {
+            case "FIND":
+                $commandExecute->findCommand();
+                break;
+        }
     }
 
     public function getResults()
@@ -58,5 +57,10 @@ class CommandReader
             $this->commandDetector();
         }
         return $this->resaults;
+    }
+
+    public function getData(): mixed
+    {
+        return $this->data['parameters'];
     }
 }
