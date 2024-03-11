@@ -1,4 +1,4 @@
 {
-  "command_name": "FIND",
-  "parameters": ["publishDate","1978-11-02","2005-09-09","1999-02-18"]
+  "command_name": "ALL",
+  "parameters": ["isbn","978-0061120084","978-0451524935"]
 }

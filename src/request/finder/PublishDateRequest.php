@@ -5,7 +5,7 @@ namespace App\request\finder;
 use App\dataBaseReader;
 use App\dataBaseReader\Merger;
 
-class PublishDateRequest
+class PublishDateRequest implements getBooks
 {
     private array $foundBooks = [];
     private array $sortedBooks = [];

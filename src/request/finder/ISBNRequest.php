@@ -8,7 +8,7 @@ namespace App\request\finder;
 use App\dataBaseReader;
 use App\dataBaseReader\Merger;
 
-class ISBNRequest
+class ISBNRequest implements getBooks
 {
 
     private array $foundBooks = [];

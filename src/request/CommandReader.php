@@ -5,6 +5,7 @@ namespace App\request;
 
 use App\request\CommandExecute;
 use Exception;
+use App\dataBaseReader\Merger;
 
 
 class CommandReader
@@ -42,9 +43,12 @@ class CommandReader
     private function commandDetector(): void
     {
         $commandExecute = new CommandExecute();
-
+        $allBooks = new Merger();
 
         switch ($this->data['command_name']) {
+            case "ALL":
+                $allBooks->getSortedBooks();
+                break;
             case "FIND":
                 $commandExecute->findCommand();
                 break;
@@ -53,10 +57,12 @@ class CommandReader
 
     public function getResults()
     {
+        $CommandExecute = new CommandExecute();
+
         if (empty($this->resaults)) {
             $this->commandDetector();
         }
-        return $this->resaults;
+        return $CommandExecute->getResult();
     }
 
     public function getData(): mixed

@@ -12,14 +12,15 @@ use App\request\finder\PublishDateRequest;
 class CommandExecute
 {
     private $data;
+    private $result;
 
     public function findCommand()
     {
         $commandReader = new CommandReader();
         $ISBN = new ISBNRequest;
         $AuthorName = new AuthorNameRequest;
-        $bookTitle = new BookTitleRequest;
-        $publishDate = new PublishDateRequest;
+        $BookTitle = new BookTitleRequest;
+        $PublishDate = new PublishDateRequest;
         $this->data = $commandReader->getData();
 
         switch ($this->data[0]) {
@@ -32,20 +33,49 @@ class CommandExecute
                     }
                     $ISBN->findBookByISBN($isbn);
                 }
-                var_dump($ISBN->getSortedBooks());
+                $this->result = $ISBN->getSortedBooks();
                 break;
-            case "publishDate":
+            case "authorname":
                 $value = true;
-                foreach ($commandReader->getData() as $authorName) {
+                foreach ($commandReader->getData() as $author) {
                     if ($value) {
                         $value = false;
                         continue;
                     }
-                    $AuthorName->findBookByAuthorName($authorName);
+                    $AuthorName->findBookByAuthorName($author);
                 }
-                var_dump($AuthorName->getSortedBooks());
+                $this->result = $AuthorName->getSortedBooks();
+                break;
+            case "booktitle":
+                $value = true;
+                foreach ($commandReader->getData() as $title) {
+                    if ($value) {
+                        $value = false;
+                        continue;
+                    }
+                    $BookTitle->findBookBookTitle($title);
+                }
+                $this->result = $BookTitle->getSortedBooks();
+                break;
+            case "publishdate":
+                $value = true;
+                foreach ($commandReader->getData() as $date) {
+                    if ($value) {
+                        $value = false;
+                        continue;
+                    }
+                    $PublishDate->findBookBypublishDate($date);
+                }
+                $this->result = $PublishDate->getSortedBooks();
                 break;
         }
+    }
+
+    public function getResult()
+    {
+        if (empty($this->result))
+            $this->findCommand();
+        return $this->result;
     }
 
 }

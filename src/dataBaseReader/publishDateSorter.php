@@ -9,13 +9,11 @@ class publishDateSorter
 
     public function __construct(array $mergedData)
     {
-
-
         usort($mergedData, function ($a, $b) {
             return strtotime($a['publishDate']) - strtotime($b['publishDate']);
         });
 
-        $this->sorted= $mergedData;
+        $this->sorted = $mergedData;
     }
 
     public function getSortedData(): array
