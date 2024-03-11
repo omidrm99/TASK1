@@ -10,9 +10,6 @@ use App\dataBaseReader\Merger;
 
 class CommandReader
 {
-
-    private string $command_name;
-    private array $parameters;
     private string $path;
     private mixed $data;
     private $resaults;
@@ -45,7 +42,7 @@ class CommandReader
         $commandExecute = new CommandExecute();
         $allBooks = new Merger();
 
-        switch ($this->data['command_name']) {
+        switch ($this->data['command_name'][0]) {
             case "ALL":
                 $this->resaults = $allBooks->getSortedBooks();
                 break;
@@ -68,6 +65,6 @@ class CommandReader
 
     public function getData(): mixed
     {
-        return $this->data['parameters'];
+        return $this->data;
     }
 }

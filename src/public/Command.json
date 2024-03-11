@@ -1,4 +1,4 @@
 {
-  "command_name": "ALL",
-  "parameters": ["isbn","","978-0451524935"]
+  "command_name": ["FIND", "booktitle"],
+  "parameters": ["Sands of Serenity", "The Enigmatic Odyssey"]
 }

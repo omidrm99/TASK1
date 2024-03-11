@@ -23,47 +23,27 @@ class CommandExecute
         $PublishDate = new PublishDateRequest;
         $this->data = $commandReader->getData();
 
-        switch ($this->data[0]) {
+        switch ($this->data['command_name'][1]) {
             case "isbn":
-                $value = true;
-                foreach ($commandReader->getData() as $isbn) {
-                    if ($value) {
-                        $value = false;
-                        continue;
-                    }
+                foreach ($this->data['parameters'] as $isbn) {
                     $ISBN->findBookByISBN($isbn);
                 }
                 $this->result = $ISBN->getSortedBooks();
                 break;
             case "authorname":
-                $value = true;
-                foreach ($commandReader->getData() as $author) {
-                    if ($value) {
-                        $value = false;
-                        continue;
-                    }
+                foreach ($this->data['parameters'] as $author) {
                     $AuthorName->findBookByAuthorName($author);
                 }
                 $this->result = $AuthorName->getSortedBooks();
                 break;
             case "booktitle":
-                $value = true;
-                foreach ($commandReader->getData() as $title) {
-                    if ($value) {
-                        $value = false;
-                        continue;
-                    }
+                foreach ($this->data['parameters'] as $title) {
                     $BookTitle->findBookBookTitle($title);
                 }
                 $this->result = $BookTitle->getSortedBooks();
                 break;
             case "publishdate":
-                $value = true;
-                foreach ($commandReader->getData() as $date) {
-                    if ($value) {
-                        $value = false;
-                        continue;
-                    }
+                foreach ($this->data['parameters'] as $date) {
                     $PublishDate->findBookBypublishDate($date);
                 }
                 $this->result = $PublishDate->getSortedBooks();
