@@ -47,10 +47,11 @@ class CommandReader
 
         switch ($this->data['command_name']) {
             case "ALL":
-                $allBooks->getSortedBooks();
+                $this->resaults = $allBooks->getSortedBooks();
                 break;
             case "FIND":
                 $commandExecute->findCommand();
+                $this->resaults = $commandExecute->getResult();
                 break;
         }
     }
@@ -62,7 +63,7 @@ class CommandReader
         if (empty($this->resaults)) {
             $this->commandDetector();
         }
-        return $CommandExecute->getResult();
+        return $this->resaults;
     }
 
     public function getData(): mixed
