@@ -55,7 +55,6 @@ class CommandReader
 
     public function getResults()
     {
-        $CommandExecute = new CommandExecute();
 
         if (empty($this->resaults)) {
             $this->commandDetector();
