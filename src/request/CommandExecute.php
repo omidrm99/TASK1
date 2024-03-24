@@ -10,17 +10,15 @@ use App\request\finder\PublishDateRequest;
 
 class CommandExecute
 {
-    private $data = new CommandReader();
+    private $data;
     private $result;
 
     private function findCommand()
     {
-        $commandReader = new CommandReader();
         $ISBN = new ISBNRequest;
         $AuthorName = new AuthorNameRequest;
         $BookTitle = new BookTitleRequest;
         $PublishDate = new PublishDateRequest;
-        $this->data = $commandReader->getCommand();
 
         switch ($this->data['command_name'][1]) {
             case "isbn":
@@ -56,6 +54,8 @@ class CommandExecute
 
     public function getResult()
     {
+        $commandReader = new CommandReader();
+        $this->data = $commandReader->getCommand();
         switch ($this->data['command_name'][0]){
             case "FIND":
                 $this->findCommand();
