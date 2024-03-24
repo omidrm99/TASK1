@@ -3,16 +3,14 @@
 namespace App\request;
 
 
-use App\request\CommandExecute;
 use Exception;
 use App\dataBaseReader\Merger;
 
 
 class CommandReader
 {
-    private string $path;
     private mixed $data;
-    private $resaults;
+    private array $resaults;
 
     public function __construct()
     {
@@ -21,8 +19,8 @@ class CommandReader
 
     private function readCommandFile(): void
     {
-        $this->path = __DIR__ . '/../public/Command.json';
-        $commandData = file_get_contents($this->path);
+        $path = __DIR__ . '/../public/Command.json';
+        $commandData = file_get_contents($path);
         if ($commandData !== false) {
             $data = json_decode($commandData, true);
             if ($data !== null && isset($data['parameters'])) {
@@ -42,18 +40,16 @@ class CommandReader
         $commandExecute = new CommandExecute();
         $allBooks = new Merger();
 
-        switch ($this->data['command_name'][0]) {
-            case "ALL":
-                $this->resaults = $allBooks->getSortedBooks();
-                break;
-            case "FIND":
-                $commandExecute->findCommand();
-                $this->resaults = $commandExecute->getResult();
-                break;
+
+
+        if (in_array($this->data['command_name'][0], ["FIND", "ADD"])){
+            $this->resaults = $commandExecute->getResult();
+        }else{
+            $this->resaults = $allBooks->getSortedBooks();
         }
     }
 
-    public function getResults()
+    public function getResults(): array
     {
 
         if (empty($this->resaults)) {
@@ -62,7 +58,7 @@ class CommandReader
         return $this->resaults;
     }
 
-    public function getData(): mixed
+    public function getCommand(): mixed
     {
         return $this->data;
     }
