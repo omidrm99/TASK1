@@ -2,7 +2,6 @@
 
 namespace App\request;
 
-use App\request\CommandReader;
 use App\request\finder\ISBNRequest;
 use App\request\finder\AuthorNameRequest;
 use App\request\finder\BookTitleRequest;
@@ -11,17 +10,17 @@ use App\request\finder\PublishDateRequest;
 
 class CommandExecute
 {
-    private $data;
+    private $data = new CommandReader();
     private $result;
 
-    public function findCommand()
+    private function findCommand()
     {
         $commandReader = new CommandReader();
         $ISBN = new ISBNRequest;
         $AuthorName = new AuthorNameRequest;
         $BookTitle = new BookTitleRequest;
         $PublishDate = new PublishDateRequest;
-        $this->data = $commandReader->getData();
+        $this->data = $commandReader->getCommand();
 
         switch ($this->data['command_name'][1]) {
             case "isbn":
@@ -51,10 +50,20 @@ class CommandExecute
         }
     }
 
+    private function addCommand()
+    {
+    }
+
     public function getResult()
     {
-        if (empty($this->result))
-            $this->findCommand();
+        switch ($this->data['command_name'][0]){
+            case "FIND":
+                $this->findCommand();
+                break;
+            case "ADD":
+                $this->addCommand();
+                break;
+        }
         return $this->result;
     }
 
