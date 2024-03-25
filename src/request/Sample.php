@@ -1,7 +1,7 @@
 <?php
 
 $commands = [
-    'add' => [\App\request\CommandExecute::class,\App\request\CommandReader::class],
+    'add' => [\App\request\CommandExecute::class, \App\request\CommandReader::class],
     'read' => [\App\request\CommandExecute::class],
 ];
 

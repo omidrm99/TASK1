@@ -2,55 +2,13 @@
 
 namespace App\request;
 
-use App\request\finder\ISBNRequest;
-use App\request\finder\AuthorNameRequest;
-use App\request\finder\BookTitleRequest;
-use App\request\finder\PublishDateRequest;
-
+use App\request\commandManager\addCommand;
+use App\request\commandManager\findCommand;
 
 class CommandExecute
 {
-    private $data;
-    private $result;
-
-    private function findCommand()
-    {
-        $ISBN = new ISBNRequest;
-        $AuthorName = new AuthorNameRequest;
-        $BookTitle = new BookTitleRequest;
-        $PublishDate = new PublishDateRequest;
-
-        switch ($this->data['command_name'][1]) {
-            case "isbn":
-                foreach ($this->data['parameters'] as $isbn) {
-                    $ISBN->findBookByISBN($isbn);
-                }
-                $this->result = $ISBN->getSortedBooks();
-                break;
-            case "authorname":
-                foreach ($this->data['parameters'] as $author) {
-                    $AuthorName->findBookByAuthorName($author);
-                }
-                $this->result = $AuthorName->getSortedBooks();
-                break;
-            case "booktitle":
-                foreach ($this->data['parameters'] as $title) {
-                    $BookTitle->findBookBookTitle($title);
-                }
-                $this->result = $BookTitle->getSortedBooks();
-                break;
-            case "publishdate":
-                foreach ($this->data['parameters'] as $date) {
-                    $PublishDate->findBookBypublishDate($date);
-                }
-                $this->result = $PublishDate->getSortedBooks();
-                break;
-        }
-    }
-
-    private function addCommand()
-    {
-    }
+    private array $data;
+    private array $result;
 
     public function getResult()
     {
@@ -58,10 +16,12 @@ class CommandExecute
         $this->data = $commandReader->getCommand();
         switch ($this->data['command_name'][0]){
             case "FIND":
-                $this->findCommand();
+                $findCommand = new findCommand();
+                $this->result = $findCommand->getResult();
                 break;
             case "ADD":
-                $this->addCommand();
+                $addCommand = new addCommand();
+                $this->result = $addCommand->getResult();
                 break;
         }
         return $this->result;
