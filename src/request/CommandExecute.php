@@ -1,7 +1,8 @@
 <?php
 
-namespace App\request\commandManager;
+namespace App\request;
 
+use App\request\commandManager\CommandReader;
 use App\request\finder\AuthorNameRequest;
 use App\request\finder\BookTitleRequest;
 use App\request\finder\ISBNRequest;

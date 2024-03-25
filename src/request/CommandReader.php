@@ -1,6 +1,6 @@
 <?php
 
-namespace App\request\commandManager;
+namespace App\request;
 
 
 use App\dataBaseReader\Merger;

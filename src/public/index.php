@@ -4,7 +4,7 @@ declare(strict_types=1);
 require __DIR__ . '/../../vendor/autoload.php';
 
 
-use App\request\commandManager\CommandReader;
+use App\request\CommandReader;
 
 
 const csv_File_Path = __DIR__ . '/../database/books.csv';
