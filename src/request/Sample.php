@@ -1,8 +1,8 @@
 <?php
 
 $commands = [
-    'add' => [\App\request\CommandExecute::class,\App\request\CommandReader::class],
-    'read' => [\App\request\CommandExecute::class],
+    'add' => [\App\request\commandManager\CommandExecute::class, \App\request\commandManager\CommandReader::class],
+    'read' => [\App\request\commandManager\CommandExecute::class],
 ];
 
 $parameter = 'add';

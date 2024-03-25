@@ -1,10 +1,10 @@
 <?php
 
-namespace App\request;
+namespace App\request\commandManager;
 
 
-use Exception;
 use App\dataBaseReader\Merger;
+use Exception;
 
 
 class CommandReader

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\request;
+namespace App\request\commandManager;
 
-use App\request\finder\ISBNRequest;
 use App\request\finder\AuthorNameRequest;
 use App\request\finder\BookTitleRequest;
+use App\request\finder\ISBNRequest;
 use App\request\finder\PublishDateRequest;
 
 
@@ -50,6 +50,8 @@ class CommandExecute
 
     private function addCommand()
     {
+        echo 1;
+        exit;
     }
 
     public function getResult()
