@@ -40,8 +40,6 @@ class CommandReader
         $commandExecute = new CommandExecute();
         $allBooks = new Merger();
 
-
-
         if (in_array($this->data['command_name'][0], ["FIND", "ADD"])){
             $this->resaults = $commandExecute->getResult();
         }else{
